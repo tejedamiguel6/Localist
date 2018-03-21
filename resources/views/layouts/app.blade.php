@@ -60,6 +60,11 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
+            @include('partials.errors')
+            @include('partials.success')
+        </div>
+
 
         <main class="py-4">
             @yield('content')

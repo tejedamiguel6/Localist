@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Business;
 use Illuminate\Http\Request;
 
-class businessesController extends Controller
+class BusinessesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +15,8 @@ class businessesController extends Controller
     public function index()
     {
         //
+        $businesses = Business::all();
+            return view('businesses.index', ['businesses' => $businesses]);
     }
 
     /**
@@ -40,44 +43,68 @@ class businessesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Business $business)
     {
-        //
+        $businesses = Business::find($business ->id );
+        return view('businesses.show', ['businesses' => $businesses]);
+
+        // $special = Special::find($specials->monday);
+        // return view('busineness.show', ['specials' => $specials]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Business $business)
     {
         //
+        $businesses = Business::find($business ->id );
+        return view('businesses.edit', ['businesses' => $businesses]);
+
+        //specials database input
+        $specials = special::find($specials ->monday );
+        return view('businesses.edit', ['businesses' => $businesses]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Business $business)
     {
-        //
+        //save data
+
+        // $businessUpdate = Business::where('id', $business->id)
+        // ->update([
+        //     'business_name' => $request->input('name'),
+        //     'city' => $request->input('city'),
+        // ]);
+        // if($businessUpdate){
+        //     return redirect()->route('businesses.show',['business'=>$business->id])
+        //     ->with('success', 'Company updated Succesfully');
+        // }
+
+        // //redirect
+        // return back()->withInput();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Business $business)
     {
         //
     }

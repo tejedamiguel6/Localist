@@ -19,13 +19,13 @@ class CreateSpecialsTable extends Migration
             $table->integer('business_id')->unsigned();
             $table->datetime('start_date');
             $table->datetime('end_date');
-            $table->boolean('monday');
-            $table->boolean('tuesday');
-            $table->boolean('wednesday');
-            $table->boolean('thursday');
-            $table->boolean('friday');
-            $table->boolean('saturday');
-            $table->boolean('sunday');
+            $table->string('monday', 400);
+            $table->string('tuesday', 400);
+            $table->string('wednesday', 400);
+            $table->string('thursday', 400);
+            $table->string('friday', 400);
+            $table->string('saturday', 400);
+            $table->string('sunday', 400);
             $table->timestamps();
         });
 

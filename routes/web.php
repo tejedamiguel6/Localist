@@ -21,6 +21,14 @@ Route::get('/', [
 
 ]);
 
+route::resource('businesses', 'BusinessesController');
+route::resource('business', 'BusinessesController');
+route::resource('comments', 'CommentsController');
+route::resource('roles', 'RolesController');
+route::resource('specials', 'SpecialsController');
+route::resource('state', 'StatesController');
+route::resource('users', 'businessesController');
+
 
 
 Route::get('/asheville', function() {
@@ -43,9 +51,9 @@ Route::get('/southern', function(){
 
 
 
-Route::resource('businesses', 'businessesController');
+// Route::resource('businesses', 'businessesController');
 
-Route::resource('members', 'membersController');
+// Route::resource('members', 'membersController');
 
 /*
 

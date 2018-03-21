@@ -13,7 +13,7 @@
                       <div class="mb-5 flex-center">
       
                           <!--Facebook-->
-                          <a class="fb-ic"><i class="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-2x"> </i> Facebook</a>
+                          <a class="fb-ic"><i class="fa fa-facebook fa-lg white-text mr-md-5 mr- fa-2x"> </i> Facebook</a>
                           <!--Twitter-->
                           <a class="tw-ic"><i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>Instagram</a>
                           <!--Google +-->

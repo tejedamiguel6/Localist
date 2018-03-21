@@ -5,7 +5,8 @@
   <div class="container">
     <h1 class="greeting display-3"></h1>
     <h1 class= "jumbotron-heading">Welcome to Asheville</h1>
-      <p> I am here to show you where all the specials downtown are, and where the local spots are.</p>
+<!--     <img class="asheville" src="images/asheville-Pano.jpg">
+ -->      <p> I am here to show you where all the specials downtown are, and where the local spots are.</p>
       <p> <a class= "btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class= "btn btn-success btn-lg" href="/register" role="button">Register</a> 
       </p>
   </div> 
@@ -41,6 +42,8 @@
         </div>
       </div>
 </main>
+
+
 <!-- ebd jumbotron  -->
         
 <!-- Set this map id on the page where you want the map to show
