@@ -6,7 +6,8 @@
     <h1 class="greeting display-3"></h1>
     <h1 class= "jumbotron-heading">Welcome to Asheville </h1>
       <p> We are Localist, and we are here to show you what the local specials downtown are. Thank you for checking out Localist!</p>
-      <p> <a class= "btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class= "btn btn-success btn-lg" href="/register" role="button">Register</a> 
+      <p>  <a class= "btn btn-success btn-lg" href="/businesses/create"> Create a business!</a>
+        <a href</a>
       </p>
   </div> 
 </section>    

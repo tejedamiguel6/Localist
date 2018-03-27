@@ -38,15 +38,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>{{ $specials->description }}</td>
-        <td>{{ $specials->tuesday }}</td>
-        <td>{{ $specials->wednesday }}</td>
-        <td>{{ $specials->thursday }}</td>
-        <td>{{ $specials->friday }}</td>
-        <td>{{ $specials->saturday }}</td>
-        <td>{{ $specials->sunday }}</td>
-      </tr>
+      
       <tr>
         <th></th>
         <td></td>
@@ -67,8 +59,40 @@
             <h4 class="font-italic">Actions</h4>
             <ol class="list-unstyled">
               <li><a href="/businesses/{{ $businesses->id }}/edit">Edit</a></li>
-              <li><a href="#">Delete</a></li>
-              <li><a href="#">Add New user</a></li>
+              <li><a href="/specials/create{{ $businesses->id }}/edit">Add Specials</a></li>
+              <li><a href="/businesses">Back to Businesses</a></li>
+
+
+
+
+              <li>
+              <i class="fa fa-power-off" aria-hidden="true"></i>
+              <a   
+              href="#"
+                  onclick="
+                  var result = confirm('Are you sure you wish to delete this special?');
+                      if( result ){
+                              event.preventDefault();
+                              document.getElementById('delete-form').submit();
+                      }
+                          "
+                          >
+                  Delete
+              </a>
+
+              <form id="delete-form" action="{{ route('businesses.destroy',[$businesses->id]) }}" 
+                method="POST" style="display: none;">
+                        <input type="hidden" name="_method" value="delete">
+                        {{ csrf_field() }}
+              </form>
+
+              </li>
+
+
+
+
+              <!-- <li><a href="#">Delete</a></li>
+              <li><a href="#">Add New user</a></li> -->
             </ol>
           </div>
          <!--  <div class="p-3">

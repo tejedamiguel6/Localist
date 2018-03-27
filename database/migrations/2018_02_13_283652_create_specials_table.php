@@ -30,7 +30,7 @@ class CreateSpecialsTable extends Migration
         });
 
         Schema::table('specials', function(Blueprint $table) {
-        $table->foreign('business_id')->references('id')->on('businesses');
+        $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
 
         });
 

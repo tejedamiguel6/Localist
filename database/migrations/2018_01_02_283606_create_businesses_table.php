@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateBusinessesTable extends Migration
 {
     /**
@@ -29,15 +27,11 @@ class CreateBusinessesTable extends Migration
             $table->string('email_address', 30);
             $table->timestamps();
         });
-
-
         Schema::table('businesses', function(Blueprint $table) {
        $table->foreign('user_id')->references('id')->on('users');
        $table->foreign('state_id')->references('id')->on('states');
-
    });
     }
-
     /**
      * Reverse the migrations.
      *

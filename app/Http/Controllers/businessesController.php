@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Business;
 use Illuminate\Http\Request;
 
+//custom import for Auth
+use Illuminate\Support\Facades\Auth;
+
 class BusinessesController extends Controller
 {
     /**
@@ -26,7 +29,7 @@ class BusinessesController extends Controller
      */
     public function create()
     {
-        //
+        return view('businesses.create');
     }
 
     /**
@@ -38,6 +41,27 @@ class BusinessesController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::check()){
+            $businesses = Business::create([
+                'business_name' => $request->input('business_name'),
+                'street' => $request->input('street'),
+                'city' => $request->input('city'),
+                // 'zip' => $request->input('zip'),
+                // 'phone_num' => $request->input('phone_num'),
+                // 'url' => $request->input('url'),
+                // 'contact_first_name' => $request->input('contact_first_name'),
+                // 'contact_last_name' => $request->input('contact_last_name'),
+                'user_id' => Auth::user()->id
+            ]);
+
+
+            if ($businesses){
+                return redirect()->route('businesses.show', ['businesses' => $businesses->id ])
+                ->with('Success', 'Business has been created');
+            }
+        }
+
+            return back()->withInput()->with('error', 'Error creating business');
     }
 
     /**
@@ -106,6 +130,14 @@ class BusinessesController extends Controller
      */
     public function destroy(Business $business)
     {
-        //
+        
+        $findBusiness = Business::find($business->id);
+        if ($findBusiness->delete()){
+            //redirect
+            return redirect()->route('businesses.index')->with('success', 'Business deleted succesfully');
+
+        }
+
+        return back()->withInput()->with('error', 'Business could not be deleted');
     }
 }
