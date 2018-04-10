@@ -15,10 +15,10 @@ class CreateSpecialsTable extends Migration
     {
         Schema::create('specials', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description', 400);
+            $table->string('description', 400)->nullable();
             $table->integer('business_id')->unsigned();
-            $table->datetime('start_date');
-            $table->datetime('end_date');
+            $table->datetime('start_date')->nullable();
+            $table->datetime('end_date')->nullable();
             $table->string('monday', 400);
             $table->string('tuesday', 400);
             $table->string('wednesday', 400);
@@ -28,12 +28,9 @@ class CreateSpecialsTable extends Migration
             $table->string('sunday', 400);
             $table->timestamps();
         });
-
         Schema::table('specials', function(Blueprint $table) {
-        $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
-
+        // $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
         });
-
     }
 
     /**

@@ -18,6 +18,7 @@ class BusinessesController extends Controller
     public function index()
     {
         //
+
         $businesses = Business::all();
             return view('businesses.index', ['businesses' => $businesses]);
     }
@@ -29,6 +30,7 @@ class BusinessesController extends Controller
      */
     public function create()
     {
+        
         return view('businesses.create');
     }
 
@@ -51,7 +53,7 @@ class BusinessesController extends Controller
                 // 'url' => $request->input('url'),
                 // 'contact_first_name' => $request->input('contact_first_name'),
                 // 'contact_last_name' => $request->input('contact_last_name'),
-                'user_id' => Auth::user()->id
+                'user_id' => $request->user()->id
             ]);
 
 
@@ -61,7 +63,7 @@ class BusinessesController extends Controller
             }
         }
 
-            return back()->withInput()->with('error', 'Error creating business');
+            return back()->withInput()->with('errors', 'Error creating business');
     }
 
     /**
@@ -92,8 +94,11 @@ class BusinessesController extends Controller
         return view('businesses.edit', ['businesses' => $businesses]);
 
         //specials database input
-        $specials = special::find($specials ->monday );
-        return view('businesses.edit', ['businesses' => $businesses]);
+        // $specials = special::find($specials ->monday );
+        // return view('businesses.edit', ['businesses' => $businesses]);
+
+
+        
 
     }
 
@@ -130,12 +135,15 @@ class BusinessesController extends Controller
      */
     public function destroy(Business $business)
     {
-        
-        $findBusiness = Business::find($business->id);
+         if(Auth::check() ){
+            dump(Auth::user()->id);
+            $businesses = Business::where('user_id', Auth::user()->id)->get();
+            $findBusiness = Business::find($business->id);
         if ($findBusiness->delete()){
             //redirect
             return redirect()->route('businesses.index')->with('success', 'Business deleted succesfully');
-
+            return view('businesses.index', ['businesses' => $businesses]);
+        }
         }
 
         return back()->withInput()->with('error', 'Business could not be deleted');

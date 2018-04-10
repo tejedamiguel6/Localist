@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->string('user_name', 30)->unique();
             $table->string('email')->unique();
             $table->string('password');
-
              $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('city')->nullable();
@@ -32,6 +31,7 @@ class CreateUsersTable extends Migration
             // $table->foreign('business_id')->references('id')->on('user');
             });
     }
+
     /**
      * Reverse the migrations.
      *

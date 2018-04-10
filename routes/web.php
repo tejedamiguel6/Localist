@@ -23,9 +23,12 @@ Route::get('/', [
 
 route::resource('businesses', 'BusinessesController');
 route::resource('business', 'BusinessesController');
+
+route::get('specials/create/{business_id?}', 'SpecialsController@create');
+
+route::resource('specials', 'SpecialsController');
 route::resource('comments', 'CommentsController');
 route::resource('roles', 'RolesController');
-route::resource('specials', 'SpecialsController');
 route::resource('state', 'StatesController');
 route::resource('users', 'businessesController');
 

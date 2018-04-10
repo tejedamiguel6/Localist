@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Special;
 use Illuminate\Http\Request;
 
+//custom import for Auth
+use Illuminate\Support\Facades\Auth;
+
 class SpecialsController extends Controller
 {
     /**
@@ -16,7 +19,7 @@ class SpecialsController extends Controller
     {
         //
         $specials = Special::all();
-            return view('businesses.index', ['specials' => $specials]);
+            return view('specials.index', ['specials' => $specials]);
 
     }
 
@@ -25,9 +28,10 @@ class SpecialsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $business_id = null )
     {
-        //
+        //defined special_id variable here?
+        return view('specials.create', ['business_id'=>$business_id] );
     }
 
     /**
@@ -38,7 +42,27 @@ class SpecialsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::check()){
+            $specials = Special::create([
+            'monday' => $request->input('monday'),
+            'tuesday' => $request->input('tuesday'),
+            'wednesday' => $request->input('wednesday'),
+            'thursday' => $request->input('thursday'),
+            'friday' => $request->input('friday'),
+            'saturday' => $request->input('saturday'),
+            'sunday' => $request->input('sunday'),
+            'business_id' => $request->input('business_id'),
+            'business_id' => $request->user()->id
+            ]);
+
+
+            if ($specials){
+                return redirect()->route('specials.show', ['specials' => $specials->id ])
+                ->with('Success', 'special has been created');
+            }
+        }
+
+            return back()->withInput()->with('errors', 'Error creating special');
     }
 
     /**
@@ -49,7 +73,11 @@ class SpecialsController extends Controller
      */
     public function show(Special $special)
     {
-        //
+         $specials = Special::find($special ->id );
+        return view('specials.show', ['specials' => $specials]);
+
+        // $special = Special::find($specials->monday);
+        // return view('busineness.show', ['specials' => $specials]);
     }
 
     /**
@@ -60,7 +88,12 @@ class SpecialsController extends Controller
      */
     public function edit(Special $special)
     {
-        //
+        $specials = Special::find($special ->id );
+        return view('specials.edit', ['specials' => $specials]);
+
+        //specials database input
+        // $specials = special::find($specials ->monday );
+        // return view('specials.edit', ['specials' => $specials]);
     }
 
     /**
@@ -72,7 +105,7 @@ class SpecialsController extends Controller
      */
     public function update(Request $request, Special $special)
     {
-        $businessUpdate = Special::where('id', $special->id)->update([
+        $specialsUpdate = Special::where('id', $special->id)->update([
             'monday' => $request->input('monday'),
             'tuesday' => $request->input('tuesday'),
             'wednesday' => $request->input('wednesday'),
@@ -81,14 +114,19 @@ class SpecialsController extends Controller
             'saturday' => $request->input('saturday'),
             'sunday' => $request->input('sunday'),
         ]);
-        if($businessUpdate){
-            return redirect()->route('businesses.show',['special'=>$special->id])
+        if(Auth::check() ){
+            // dump(Auth::user()->id);
+            $specials = Special::where('business_id', Auth::user()->id)->get();
+        if($specialsUpdate){
+            return redirect()->route('specials.show',['special'=>$special->id])
             ->with('success', 'Company updated Succesfully');
         }
+    }
 
         //redirect
         return back()->withInput();
-    }
+
+    } //end public function
 
     /**
      * Remove the specified resource from storage.
@@ -98,6 +136,14 @@ class SpecialsController extends Controller
      */
     public function destroy(Special $special)
     {
-        //
+         $findSpecial = Special::find($special->id);
+        if ($findSpecial->delete()){
+            //redirect
+            return redirect()->route('businesses.index')->with('success', 'special deleted succesfully');
+
+        }
+
+        return back()->withInput()->with('error', 'special could not be deleted');
     }
+    
 }

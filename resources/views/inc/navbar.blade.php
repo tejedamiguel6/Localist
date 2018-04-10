@@ -49,7 +49,6 @@
                       <li class="nav-item active"><a class="nav-link" href={{ '/' }}>Home <span class="sr-only"></span></a>
                       <li class="nav-item active"><a class="nav-link" href="/asheville">Asheville<span class="sr-only">(current)</span></a>
                       <li class="nav-item active"><a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
-                      <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
            
                          <!--   if i decide i  want a drop down uncomment this<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -64,11 +63,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+
+                        <!-- custom nav -->
                         <li><a class="nav-link" href="{{ route('businesses.index') }}">Businesses</a></li>
 <!--                             <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
  -->
 
-                        
+
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>

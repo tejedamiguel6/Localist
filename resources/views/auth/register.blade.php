@@ -42,7 +42,7 @@
 
 
                         <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">last name</label>
+                            <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
 
                             <div class="col-md-6">
                                 <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required>
