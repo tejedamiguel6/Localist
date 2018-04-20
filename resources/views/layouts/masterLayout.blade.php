@@ -22,6 +22,7 @@
     <title>{{config('app.name', 'Localist')}}</title>
 </head>
 <body>
+
     <div id="app">
         @include('inc.navbar')
        
@@ -29,6 +30,7 @@
         
     </div>
     @include('inc.footer')
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

@@ -25,6 +25,7 @@ route::resource('businesses', 'BusinessesController');
 route::resource('business', 'BusinessesController');
 
 route::get('specials/create/{business_id?}', 'SpecialsController@create');
+route::post('businesses/adduser/', 'BusinessesController@adduser')->name('businesses.adduser');
 
 route::resource('specials', 'SpecialsController');
 route::resource('comments', 'CommentsController');

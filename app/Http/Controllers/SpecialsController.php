@@ -62,7 +62,7 @@ class SpecialsController extends Controller
             }
         }
 
-            return back()->withInput()->with('errors', 'Error creating special');
+             return back()->withInput()->with('errors', 'Error creating new project');
     }
 
     /**
@@ -105,6 +105,7 @@ class SpecialsController extends Controller
      */
     public function update(Request $request, Special $special)
     {
+        if(Auth::id() !== $special->user_id ){
         $specialsUpdate = Special::where('id', $special->id)->update([
             'monday' => $request->input('monday'),
             'tuesday' => $request->input('tuesday'),
@@ -114,9 +115,9 @@ class SpecialsController extends Controller
             'saturday' => $request->input('saturday'),
             'sunday' => $request->input('sunday'),
         ]);
-        if(Auth::check() ){
-            // dump(Auth::user()->id);
-            $specials = Special::where('business_id', Auth::user()->id)->get();
+        
+            dump(Auth::user()->id);
+        $specials = Special::where('business_id', Auth::user()->id)->get();
         if($specialsUpdate){
             return redirect()->route('specials.show',['special'=>$special->id])
             ->with('success', 'Company updated Succesfully');

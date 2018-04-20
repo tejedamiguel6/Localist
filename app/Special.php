@@ -20,6 +20,14 @@ class Special extends Model
     	'sunday',
     ];
 
+
+// function made on 4/12/ May not work 
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
+
+
+
     public function businesses(){
         return $this->belongsTo('App\Businesses');
     }

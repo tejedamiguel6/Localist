@@ -14,8 +14,6 @@
    <form method="post" action="{{ route('specials.store') }}">
       {{ csrf_field() }}
 
-
-
                   <div class="form-group">
                   <label for="specials-name">Monday<span class="required">*</span></label>
 
@@ -57,8 +55,6 @@
                   </div>
 
                   <input type="submit" class="btn-primary" value="Submit"/>
-
-
 
 
    <div class="form-group col-md-2">

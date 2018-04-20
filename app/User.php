@@ -34,17 +34,25 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
+
     //user/member has many businesses
     public function Businesses(){
         return $this->hasMany('App\Businesses');
     }
 
-    public function comments(){
-        return $this->hasMany('App\Comment');
+
+    // made on 4/12 May not be needed many to many relationship
+    public function specials(){
+        return $this->belongsToMany('App\Special');
     }
 
-    public function role(){
-        return $this->belongsTo('App\Role');
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
     }
 
 

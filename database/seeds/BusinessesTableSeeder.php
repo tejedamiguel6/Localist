@@ -12,10 +12,12 @@ class BusinessesTableSeeder extends Seeder
     public function run()
     {
      $businesses = new \App\Businesses;
-        $businesses->image_path = 'https://res.cloudinary.com/simpleview/image/upload/crm/asheville/Southern-Banner-4_1C396BD0-BB97-4185-B32AA2F579212216_58eeb8c0-780b-4c55-adf271e409ac90c1.jpg';
-        $businesses->business_name = 'The Southern bar and Kitchen';
-        $businesses->state_id = '38';
-        $businesses->street = '41 N. Lexington Avenue Asheville';
+        $businesses->image_path = 'images/southernShop.jpg';
+        $businesses->business_name = 'The Southern Bar';
+        $businesses->user_id = '1';
+        $businesses->special_id = '1';
+        // $businesses->state_id = '38';
+        $businesses->street = '41 N. Lexington Avenue';
         $businesses->city = 'Asheville';
         $businesses->zip ='28804';
         $businesses->phone_num ='828-251-1777';
@@ -28,9 +30,11 @@ class BusinessesTableSeeder extends Seeder
 
         $businesses = new \App\Businesses;
 
-        $businesses->image_path = 'https://res.cloudinary.com/odysys-llc/image/upload/c_thumb,g_custom,w_1000/v1/blog-posts/6833/zb8jfhfqtmb0nasr9eb8';
+        $businesses->image_path = 'images/imperialShop.jpg';
         $businesses->business_name = 'The Imperial Life';
-        $businesses->state_id = '38';
+        $businesses->user_id = '2';
+        $businesses->special_id = '2';
+        // $businesses->state_id = '38';
         $businesses->street = '48 College Street';
         $businesses->city = ', Asheville';
         $businesses->zip = '28801';
@@ -45,9 +49,11 @@ class BusinessesTableSeeder extends Seeder
 
         $businesses = new \App\Businesses;
 
-        $businesses->image_path = 'https://s3-media2.fl.yelpcdn.com/bphoto/XsI_yXFA3VY0FdJWaybBeg/o.jpg';
+        $businesses->image_path = 'images/banksShop.jpg';
         $businesses->business_name = 'Banks Ave Bar';
-        $businesses->state_id = '38';
+        $businesses->user_id = '3';
+        $businesses->special_id = '3';
+        // $businesses->state_id = '38';
         $businesses->street = '32 Banks Ave';
         $businesses->city = ', Asheville';
         $businesses->zip = '28801';
@@ -61,9 +67,12 @@ class BusinessesTableSeeder extends Seeder
 
 
         $businesses = new \App\Businesses;
-        $businesses->image_path = 'https://lolo-production.s3.amazonaws.com/uploads/experie38e_certificate/image/99/standard_6057485485_7fea3f7e21_b.jpg';
+
+        $businesses->image_path = 'images/vaultShop.jpg';
         $businesses->business_name = 'Ranking Vault Cocktail Lounge';
-        $businesses->state_id = '38';
+        $businesses->user_id = '4';
+        $businesses->special_id = '4';
+        // $businesses->state_id = '38';
         $businesses->street = '7 Ranking Ave';
         $businesses->city = ', Asheville';
         $businesses->zip = '28801';
@@ -77,9 +86,11 @@ class BusinessesTableSeeder extends Seeder
 
 
 		$businesses = new \App\Businesses;
-        $businesses->image_path = 'https://static1.squarespace.com/static/57696e76d482e9466c2c6032/t/5a79d54671c10b127645a181/1517933926088/MGPanna-7.jpg?format=2500w';
+        $businesses->image_path = 'images/mgShop.jpg';
         $businesses->business_name = 'MG Road Bar and Lounge';
-        $businesses->state_id = '38';
+        $businesses->user_id = '5';
+        $businesses->special_id = '5';
+        // $businesses->state_id = '38';
         $businesses->street = '19 Wall St';
         $businesses->city = ', Asheville';
         $businesses->zip = '28801';
@@ -93,9 +104,11 @@ class BusinessesTableSeeder extends Seeder
 
 
 		$businesses = new \App\Businesses;
-        $businesses->image_path = 'http://2.bp.blogspot.com/_uobQP1VcwGc/TEmkGvVs8cI/AAAAAAAAAIA/wulHCFHjlQ0/s1600/DSCN2324.JPG';
+        $businesses->image_path = 'images/desotoShop.jpg';
         $businesses->business_name = 'Desoto Lounge';
-        $businesses->state_id = '38';
+        $businesses->user_id = '6';
+        $businesses->special_id = '6';
+        // $businesses->state_id = '38';
         $businesses->street = '504 Haywood Rd';
         $businesses->city = ', Asheville';
         $businesses->zip = '28806';

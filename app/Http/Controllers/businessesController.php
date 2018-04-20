@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\User;
 use Illuminate\Http\Request;
 
 //custom import for Auth
@@ -17,11 +18,30 @@ class BusinessesController extends Controller
      */
     public function index()
     {
-        //
-
         $businesses = Business::all();
             return view('businesses.index', ['businesses' => $businesses]);
     }
+
+    // public function adduser(Request $request) {
+    //     //add member to business
+    //     //take a business and add it to a member 
+    // $businesses = Business::find($request->input('businesses_id'));
+    // if (Auth::user()->id == $businesses->user_id) {
+
+    //     $user = User::where('email', $request->input('email'))->first(); //single reord
+    //         if($user && $businesses){
+    //             $businesses->users()->attach($user->id);  
+
+    //         return redirect()->route('businesses.show', ['businesses'=> $businesses->id ]) 
+    //         ->with('success', $request->input('email').' was added');
+
+    //             }
+
+    //     }
+
+    //     return redirect()->route('businesses.show', ['business'=> $businesses->id ]) 
+    //         ->with('errors', 'Error adding member to business');
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -92,14 +112,6 @@ class BusinessesController extends Controller
         //
         $businesses = Business::find($business ->id );
         return view('businesses.edit', ['businesses' => $businesses]);
-
-        //specials database input
-        // $specials = special::find($specials ->monday );
-        // return view('businesses.edit', ['businesses' => $businesses]);
-
-
-        
-
     }
 
     /**

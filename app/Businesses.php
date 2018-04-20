@@ -30,3 +30,4 @@ class Businesses extends Model
 	}
 
 }
+// this model is not needed delete after end of project

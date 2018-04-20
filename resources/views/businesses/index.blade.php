@@ -6,14 +6,13 @@
     <h1 class="greeting display-3"></h1>
     <h1 class= "jumbotron-heading">Welcome to Asheville </h1>
       <p> We are Localist, and we are here to show you what the local specials downtown are. Thank you for checking out Localist!</p>
-      <p>  <a class= "btn btn-success btn-lg" href="/businesses/create"> Add your business!</a>
-        <a href</a>
+      <p> <a class= "btn btn-success btn-lg" href="/businesses/create"> Add your business!</a>
       </p>
   </div> 
 </section>    
-<!-- jumbotron layout i am experimenting with  -->
 <main role="main">
   @foreach($businesses->chunk(3) as $businesses)
+  <div class="album py-5 bg-light">
             <div class="row">
               @foreach($businesses as $businesses)
               <div class="col-md-4">
@@ -23,12 +22,16 @@
                   <h1 class="card-text"><a href="/business/{{ $businesses->id }}"> {{ $businesses->business_name }} </a> </h1>
                   <p class="address"> {{ $businesses->address }}</p>
                   <p class="phone-num"> contact us {{ $businesses->phone_num }}</p>
-                  <p class="url"> <a href=" {{ $businesses->url }} "> View our Specials</a> </p>
+                  <p  style="float:right;" class="url"> <a href=" {{ $businesses->url }} ">View Website</a> </p>
                   <p class="url">{{ $businesses->street }} {{ $businesses->city }} NC </a> </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                     <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="/business/{{ $businesses->id }}"> View</button></a>
+
+                      <!-- If business owner is logged in they will see these options -->
+                      @if(Auth::check() && Auth::user()->role_id == 1)
+                      <button type="button"  class="btn btn-sm btn-outline-secondary"> <a href="/businesses/{{ $businesses->id }}/edit"> Edit</button> </a>
+                      @endif
                     </div>
                     <small class="text-muted">9 mins</small>
                   </div>
@@ -36,33 +39,8 @@
               </div>
             </div>
               @endforeach
+             </div>  
           </div>
   @endforeach
-      <div class="album py-5 bg-light">
-        <div class="container">
-        </div>
-      </div>
 </main>
-<!-- ebd jumbotron  -->
-        
-<!-- Set this map id on the page where you want the map to show
-        <div id="map">
-        	map
-        </div> -->
-
-
-<!-- authentication
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
- -->
 @endsection

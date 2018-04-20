@@ -6,10 +6,15 @@
         <div class="container">
           <h1 class="jumbotron-heading">{{ $businesses->business_name }}</h1>
           <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+
+          @if(Auth::id() == $businesses->user_id)
+
           <p>
             <a href= "/specials/create/{{ $businesses->id }}" class="btn btn-success my-2">Add Your Special</a>
             <a  href="/businesses/{{ $businesses->id }}/edit" class="btn btn-primary my-2">Edit Your Special</a>
           </p>
+
+          @endif
         </div>
       </section>
 
@@ -25,7 +30,7 @@
  -->      
   <div class="table-responsive">  
   <table class="table">
-    <caption>List of users</caption>
+    <caption></caption>
     <thead>
       <tr>
         <th scope="col">Monday</th>
@@ -39,7 +44,7 @@
     </thead>
     <tbody>
      @foreach($businesses->specials as $special)
-
+    <h1 style="text-align: center; font-size:15px;">Update on: {{ $specials->created_at->toDayDateTimeString() }}</h1>
       <tr>
         <td>{{ $specials->monday }}</td>
         <td>{{ $specials->tuesday }}</td>
@@ -64,9 +69,8 @@
   </div>
   </div>
 
-@if($businesses->user_id == Auth::user()->id)
 
-
+@if(Auth::check() && Auth::user()->role_id == 1)
 <section class="jumbotron-second text-center">
   <p>
     <a href="#" class="btn btn-danger my-2" onclick="
@@ -79,13 +83,12 @@
                           >
                   Delete Business
               </a>
-    <a  href="/businesses" class="btn btn-info my-2">Back to Businesses</a>
-  </p>
+<!--     <a  href="/businesses" class="btn btn-info my-2">Back to Businesses</a>
+ -->  </p>
 </section>
-  @endif 
-  <aside class="col-md-2 blog-sidebar">
+@endif
 
-              <li>
+            
               <i class="fa fa-power-off" aria-hidden="true"></i>
               
               <form id="delete-form" action="{{ route('businesses.destroy',[$businesses->id]) }}" 
@@ -94,16 +97,25 @@
                         {{ csrf_field() }}
               </form>
 
-              </li>
+
+@if(Auth::check() && Auth::user()->role_id ==! 1)
 
 
+<section class="jumbotron-second text-center">
+              <a  href="/businesses" class="btn btn-info my-2">Back to Businesses</a>
 
+ </section>    
 
-              <!-- <li><a href="#">Delete</a></li>
-              <li><a href="#">Add New user</a></li> -->
+ @endif  
+
+<!-- non member users can go "back to business" -->
+ <section class="jumbotron-second text-center">
+              <a  href="/businesses" class="btn btn-info my-2">Back to Businesses</a>
+
+ </section>          
+
             </ol>
       
-  </aside>
     </div>
     </div>   
     </main>
