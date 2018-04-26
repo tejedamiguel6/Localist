@@ -84,13 +84,13 @@ class SpecialsTableSeeder extends Seeder
         $specials->business_id = '5';
         $specials->start_date = NULL;
         $specials->end_date =NULL;
-        $specials->monday = '';
-        $specials->tuesday = '';
-        $specials->wednesday = '';
-        $specials->thursday = '';
-        $specials->friday = '';
-        $specials->saturday = '';
-        $specials->sunday = '';
+        $specials->monday = 'No Special';
+        $specials->tuesday = 'No Special';
+        $specials->wednesday = 'No Special';
+        $specials->thursday = 'No Special';
+        $specials->friday = 'No Special';
+        $specials->saturday = 'No Special';
+        $specials->sunday = 'No Special';
         
         $specials->save();
 
@@ -101,13 +101,13 @@ class SpecialsTableSeeder extends Seeder
         $specials->business_id = '6';
         $specials->start_date = NULL;
         $specials->end_date =NULL;
-        $specials->monday = '';
-        $specials->tuesday = '';
-        $specials->wednesday = '';
-        $specials->thursday = '';
-        $specials->friday = '';
-        $specials->saturday = '';
-        $specials->sunday = '';
+        $specials->monday = 'No Special';
+        $specials->tuesday = 'No Special';
+        $specials->wednesday = 'No Special';
+        $specials->thursday = 'No Special';
+        $specials->friday = 'No Special';
+        $specials->saturday = 'No Special';
+        $specials->sunday = 'No Special';
         
         $specials->save();
 

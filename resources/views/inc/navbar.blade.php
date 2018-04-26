@@ -10,7 +10,6 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active"><a class="nav-link" href={{ '/' }}>Home <span class="sr-only"></span></a></li>
           <li class="nav-item active"><a href="{{ route('businesses.index') }}" class="nav-link">Asheville <span class="sr-only">(current)</span></a></li>
-          <li class="nav-item active"><a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a></li>
         </ul>
 <!-- Right Side Of Navbar -->
         <ul class="nav navbar-nav navbar-right">

@@ -29,5 +29,10 @@ class Businesses extends Model
 		return $this->belongsTo('App\State');
 	}
 
+    public function specials()
+    {
+        return $this->hasMany('App\Special');
+    }
+
 }
 // this model is not needed delete after end of project

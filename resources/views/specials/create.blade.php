@@ -1,73 +1,44 @@
 @extends('layouts.masterLayout')
 
 @section('content')
-    <main role="main">
-     
-
+  <main role="main">
     <div class="container">
+      <h1>Create a new Special</h1>
       <div class="row">
-<div class="container">
-<h1>Create a new Special</h1>
+        <div class="col-md-12">
+          {!! BootForm::open(['route' => ['specials.store']]) !!}
 
-</div>
+          {!! BootForm::textarea('description') !!}
 
-   <form method="post" action="{{ route('specials.store') }}">
-      {{ csrf_field() }}
+          {!! BootForm::date('start_date') !!}
 
-                  <div class="form-group">
-                  <label for="specials-name">Monday<span class="required">*</span></label>
+          {!! BootForm::date('end_date') !!}
 
-                    <input placeholder="Enter a Special" id="monday" required name="monday" spellcheck="false" class="form-control" />
-                  </div>
+          {!! BootForm::select('business_id', 'Business', $businessesArray, isset($selected) ? $selected : null) !!}
 
-                  <div class="form-group">
-                  <label placeholder="Enter a Special" for="specials-name">Tuesday<span class="required">*</span></label>
-                    <input id="tuesday" required name="tuesday" spellcheck="false" class="form-control" />
-                  </div>
+          {!! BootForm::text('monday', 'Monday', old('monday', isset($special) ? $special->monday : '')) !!}
 
-                   <div class="form-group">
-                  <label placeholder="Enter a Special" for="specials-name">Wednesday<span class="required">*</span></label>
-                    <input id="wednesday" required name="wednesday" spellcheck="false" class="form-control" />
-                  </div>
+          {!! BootForm::text('tuesday', 'Tuesday', old('tuesday', isset($special) ? $special->tuesday : '')) !!}
 
+          {!! BootForm::text('wednesday', 'Wednesday', old('wednesday', isset($special) ? $special->wednesday : '')) !!}
 
-                   <div class="form-group">
-                  <label placeholder="Enter a Special" for="specials-name">Thursday<span class="required">*</span></label>
-                    <input id="thursday" required name="thursday" spellcheck="false" class="form-control" />
-                  </div>
+          {!! BootForm::text('thursday', 'Thursday', old('thursday', isset($special) ? $special->thursday : '')) !!}
 
+          {!! BootForm::text('friday', 'Friday', old('friday', isset($special) ? $special->friday : '')) !!}
 
-                   <div class="form-group">
-                  <label placeholder="Enter a Special" for="specials-name">Friday<span class="required">*</span></label>
-                    <input id="friday" required name="friday" spellcheck="false" class="form-control" />
-                  </div>
+          {!! BootForm::text('saturday', 'Saturday', old('saturday', isset($special) ? $special->saturday : '')) !!}
 
+          {!! BootForm::text('sunday', 'Sunday', old('sunday', isset($special) ? $special->sunday : '')) !!}
 
-                   <div class="form-group">
-                  <label placeholder="Enter a Special" for="specials-name">Saturday<span class="required">*</span></label>
-                    <input id="saturday" required name="saturday" spellcheck="false" class="form-control" />
-                  </div>
+          {!! BootForm::submit('Save', ['id' => 'custom-button', 'class' => 'btn btn-default pull-right']) !!}
 
+          <br>
+          <br>
 
-                   <div class="form-group">
-                  <label placeholder="Enter a Special" for="specials-name">Sunday<span class="required">*</span></label>
-                    <input id="sunday" required name="sunday" spellcheck="false" class="form-control" />
-                  </div>
-
-                  <input type="submit" class="btn-primary" value="Submit"/>
-
-
-   <div class="form-group col-md-2">
-        <input type="hidden" name="$business_id" value="{{ $business_id }}" class="form-control">
-    </div> 
- 
-
-    
-    </form>
-
-
-
-    </main>
-
-
+          {!! BootForm::close() !!}
+        </div>
+      </div>
+    </div>
+  </main>
 @endsection
+

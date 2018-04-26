@@ -11,6 +11,7 @@ class Business extends Model
     'business_name', 
     'user_id', 
     'state_id', 
+    'special_id', 
     'street', 
     'city', 
     'zip', 

@@ -22,27 +22,6 @@ class BusinessesController extends Controller
             return view('businesses.index', ['businesses' => $businesses]);
     }
 
-    // public function adduser(Request $request) {
-    //     //add member to business
-    //     //take a business and add it to a member 
-    // $businesses = Business::find($request->input('businesses_id'));
-    // if (Auth::user()->id == $businesses->user_id) {
-
-    //     $user = User::where('email', $request->input('email'))->first(); //single reord
-    //         if($user && $businesses){
-    //             $businesses->users()->attach($user->id);  
-
-    //         return redirect()->route('businesses.show', ['businesses'=> $businesses->id ]) 
-    //         ->with('success', $request->input('email').' was added');
-
-    //             }
-
-    //     }
-
-    //     return redirect()->route('businesses.show', ['business'=> $businesses->id ]) 
-    //         ->with('errors', 'Error adding member to business');
-    // }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -62,7 +41,7 @@ class BusinessesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
         if(Auth::check()){
             $businesses = Business::create([
                 'business_name' => $request->input('business_name'),
@@ -94,11 +73,10 @@ class BusinessesController extends Controller
      */
     public function show(Business $business)
     {
-        $businesses = Business::find($business ->id );
-        return view('businesses.show', ['businesses' => $businesses]);
+        $business = Business::where('id', $business->id)->first();
+        return view('businesses.show')
+            ->with(compact('business'));
 
-        // $special = Special::find($specials->monday);
-        // return view('busineness.show', ['specials' => $specials]);
     }
 
     /**
@@ -107,11 +85,12 @@ class BusinessesController extends Controller
      * @param  \App\Business  $business
      * @return \Illuminate\Http\Response
      */
-    public function edit(Business $business)
+    public function edit($id)
     {
         //
-        $businesses = Business::find($business ->id );
-        return view('businesses.edit', ['businesses' => $businesses]);
+        $business = Business::find($id);
+        return view('businesses.edit')
+            ->with(compact('business'));
     }
 
     /**
@@ -148,7 +127,6 @@ class BusinessesController extends Controller
     public function destroy(Business $business)
     {
          if(Auth::check() ){
-            dump(Auth::user()->id);
             $businesses = Business::where('user_id', Auth::user()->id)->get();
             $findBusiness = Business::find($business->id);
         if ($findBusiness->delete()){
@@ -159,5 +137,13 @@ class BusinessesController extends Controller
         }
 
         return back()->withInput()->with('error', 'Business could not be deleted');
+    }
+
+    public function userIndex()
+    {
+        $businesses = Auth::user()->businesses;
+
+        return view('businesses.my-businesses')
+            ->with(compact('businesses'));
     }
 }

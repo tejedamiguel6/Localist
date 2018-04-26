@@ -9,7 +9,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+ public function up()
     {
         if(!Schema::hasTable('users')) {
         Schema::create('users', function (Blueprint $table) {
@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             // $table->foreign('business_id')->references('id')->on('user');
             });
     }
+
 
     /**
      * Reverse the migrations.

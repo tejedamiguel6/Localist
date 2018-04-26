@@ -4,21 +4,32 @@
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Your Special has been updated!{{ $specials->specials_id }}</h1>
+          <h1 class="jumbotron-heading">Your Special has been updated!{{ $special->id }}</h1>
           <p class="lead text-muted"></p>
           <p>
-            <a href= "/specials/create/{{ $specials->id }}" class="btn btn-primary my-2">Add Special</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            <a href="/specials/{{ $special->id }}/edit" class="btn btn-primary my-2">Edit Special</a>
+            
           </p>
         </div>
       </section>
+      
 
         <div class="container">
         <div class="row">
+          <div class="col-md-12 text-center">
+              <p class="lead">Special Location: {{ $special->business->business_name }}</p>
+              <p>About: {{ $special->description }}</p>
+          </div>
+          <div class="col-md-6 text-center">
+            <p>Start Date: {{ Carbon\Carbon::parse($special->start_date)->format('m/d/Y') }}</p>
+          </div>
+          <div class="col-md-6 text-center">
+            <p>End Date: {{ Carbon\Carbon::parse($special->end_date)->format('m/d/Y') }}</p>
+          </div>
 
   <div class="table-responsive">  
   <table class="table">
-    <caption>List of users</caption>
+    <caption></caption>
     <thead>
       <tr>
         <th scope="col">Monday</th>
@@ -33,13 +44,13 @@
     <tbody>
      
       <tr>
-        <td>{{ $specials->monday }}</td>
-        <td>{{ $specials->tuesday }}</td>
-        <td>{{ $specials->wednesday }}</td>
-        <td>{{ $specials->thursday }}</td>
-        <td>{{ $specials->friday }}</td>
-        <td>{{ $specials->saturday }}</td>
-        <td>{{ $specials->sunday }}</td>
+        <td>{{ $special->monday }}</td>
+        <td>{{ $special->tuesday }}</td>
+        <td>{{ $special->wednesday }}</td>
+        <td>{{ $special->thursday }}</td>
+        <td>{{ $special->friday }}</td>
+        <td>{{ $special->saturday }}</td>
+        <td>{{ $special->sunday }}</td>
       </tr>
       <tr>
         <th></th>
@@ -61,17 +72,17 @@
   </div>
 
   
+ <section class="jumbotron-second text-center">
+              <a  href="/businesses" class="btn btn-info my-2">Back to Businesses</a>
 
+ </section>    
 
   <aside class="col-md-2 blog-sidebar">
     <div class="p-3 mb-3 bg-light rounded">  
         </div>
           <div class="p-3">
-            <h4 class="font-italic">Actions</h4>
             <ol class="list-unstyled">
-              <li><a href="/specials/{{ $specials->id }}/edit">Edit</a></li>
-              <li><a href="/specials/create/{{ $specials->id }}">Add Specials</a></li>
-              <li><a href="/business">Back to business </a></li>
+              <li><a href="/specials/create">Add Specials</a></li>
 
 
 
@@ -90,7 +101,7 @@
                   Delete
               </a>
 
-              <form id="delete-form" action="{{ route('specials.destroy',[$specials->id]) }}" 
+              <form id="delete-form" action="{{ route('specials.destroy',[$special->id]) }}" 
                 method="POST" style="display: none;">
                         <input type="hidden" name="_method" value="delete">
                         {{ csrf_field() }}

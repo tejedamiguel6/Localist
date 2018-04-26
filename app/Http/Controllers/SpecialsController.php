@@ -28,10 +28,31 @@ class SpecialsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( $business_id = null )
+    public function create( Request $request )
     {
+        $selected = null;
+
+        if ($request->selected) {
+            $selected = $request->selected;
+        }
+        $businesses = Auth::user()->businesses;
+        $businessesArray = [];
+
+        foreach ($businesses  as $business) {
+            $businessesArray = $businessesArray + [$business->id => $business->business_name];
+;        }
+
+        //dd($businessesArray);
+        // dump(Auth::user()->id);
+        // $businesses = null;
+        // if(!$business_id) {
+        //     $businesses = Business::where('user_id', Auth::user()->id)->get();
+        // }
         //defined special_id variable here?
-        return view('specials.create', ['business_id'=>$business_id] );
+        return view('specials.create')
+            ->with(compact('businesses'))
+            ->with(compact('businessesArray'))
+            ->with(compact('selected'));
     }
 
     /**
@@ -42,6 +63,17 @@ class SpecialsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $data = $request->except('_token');
+
+        $special = Special::create($data);
+
+        if ($special){
+            return redirect()->route('specials.show', ['special' => $special->id ])
+                ->with('Success', 'special has been created');
+        }
+
+        return back()->with('error', 'Something went wrong. Please try again.');
         if(Auth::check()){
             $specials = Special::create([
             'monday' => $request->input('monday'),
@@ -54,7 +86,6 @@ class SpecialsController extends Controller
             'business_id' => $request->input('business_id'),
             'business_id' => $request->user()->id
             ]);
-
 
             if ($specials){
                 return redirect()->route('specials.show', ['specials' => $specials->id ])
@@ -71,13 +102,14 @@ class SpecialsController extends Controller
      * @param  \App\Special  $special
      * @return \Illuminate\Http\Response
      */
-    public function show(Special $special)
+    public function show($special_id)
     {
-         $specials = Special::find($special ->id );
-        return view('specials.show', ['specials' => $specials]);
+                //dump(Auth::user()->id);
+        $special = Special::where('id', $special_id)->first();
 
-        // $special = Special::find($specials->monday);
-        // return view('busineness.show', ['specials' => $specials]);
+         //$specials = Special::find($special ->id );
+        return view('specials.show')
+            ->with(compact('special'));
     }
 
     /**
@@ -88,12 +120,10 @@ class SpecialsController extends Controller
      */
     public function edit(Special $special)
     {
+
         $specials = Special::find($special ->id );
         return view('specials.edit', ['specials' => $specials]);
 
-        //specials database input
-        // $specials = special::find($specials ->monday );
-        // return view('specials.edit', ['specials' => $specials]);
     }
 
     /**
@@ -105,7 +135,7 @@ class SpecialsController extends Controller
      */
     public function update(Request $request, Special $special)
     {
-        if(Auth::id() !== $special->user_id ){
+        if(Auth::check() ){
         $specialsUpdate = Special::where('id', $special->id)->update([
             'monday' => $request->input('monday'),
             'tuesday' => $request->input('tuesday'),
@@ -116,7 +146,7 @@ class SpecialsController extends Controller
             'sunday' => $request->input('sunday'),
         ]);
         
-            dump(Auth::user()->id);
+            // dump(Auth::user()->id);
         $specials = Special::where('business_id', Auth::user()->id)->get();
         if($specialsUpdate){
             return redirect()->route('specials.show',['special'=>$special->id])
@@ -141,7 +171,6 @@ class SpecialsController extends Controller
         if ($findSpecial->delete()){
             //redirect
             return redirect()->route('businesses.index')->with('success', 'special deleted succesfully');
-
         }
 
         return back()->withInput()->with('error', 'special could not be deleted');

@@ -40,8 +40,13 @@ class User extends Authenticatable
     }
 
     //user/member has many businesses
-    public function Businesses(){
-        return $this->hasMany('App\Businesses');
+    public function Business(){
+        return $this->hasMany('App\Business');
+    }
+
+      //user/member has many businesses
+    public function businesses(){
+        return $this->hasMany('App\Business');
     }
 
 

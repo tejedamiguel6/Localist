@@ -28,8 +28,8 @@ class Special extends Model
 
 
 
-    public function businesses(){
-        return $this->belongsTo('App\Businesses');
+    public function business(){
+        return $this->belongsTo('App\Business');
     }
 
 

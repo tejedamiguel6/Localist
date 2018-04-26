@@ -23,8 +23,9 @@ Route::get('/', [
 
 route::resource('businesses', 'BusinessesController');
 route::resource('business', 'BusinessesController');
+route::get('my-businesses', 'BusinessesController@userIndex');
 
-route::get('specials/create/{business_id?}', 'SpecialsController@create');
+//route::get('specials/create/{business_id?}', 'SpecialsController@create');
 route::post('businesses/adduser/', 'BusinessesController@adduser')->name('businesses.adduser');
 
 route::resource('specials', 'SpecialsController');
@@ -39,9 +40,7 @@ Route::get('/asheville', function() {
 	return view('pages.asheville');
 });
 
-Route::get('/about', function() {
-	return view('pages.about');
-});
+
 
 
 Route::get('/southern', function(){
