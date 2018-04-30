@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 //custom import for Auth
 use Illuminate\Support\Facades\Auth;
 
+
 class BusinessesController extends Controller
 {
     /**
@@ -27,6 +28,7 @@ class BusinessesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         
@@ -47,9 +49,9 @@ class BusinessesController extends Controller
                 'business_name' => $request->input('business_name'),
                 'street' => $request->input('street'),
                 'city' => $request->input('city'),
-                // 'zip' => $request->input('zip'),
+                'zip' => $request->input('zip'),
                 // 'phone_num' => $request->input('phone_num'),
-                // 'url' => $request->input('url'),
+                'url' => $request->input('url'),
                 // 'contact_first_name' => $request->input('contact_first_name'),
                 // 'contact_last_name' => $request->input('contact_last_name'),
                 'user_id' => $request->user()->id
@@ -64,6 +66,9 @@ class BusinessesController extends Controller
 
             return back()->withInput()->with('errors', 'Error creating business');
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -146,4 +151,10 @@ class BusinessesController extends Controller
         return view('businesses.my-businesses')
             ->with(compact('businesses'));
     }
+
+
+
+
+
+   
 }

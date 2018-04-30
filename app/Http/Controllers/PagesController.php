@@ -18,14 +18,6 @@ class PagesController extends Controller
     }
 
 
-	public function about() {
-    	return view ('pages.about');
-    }
-
-    public function southern(){
-        return view('pages.southern');
-    }
-
 
 
 

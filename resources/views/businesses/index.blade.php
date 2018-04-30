@@ -33,18 +33,17 @@
                   <h1 class="card-text"><a href="/business/{{ $businesses->id }}"> {{ $businesses->business_name }} </a> </h1>
                   <p class="address"> {{ $businesses->address }}</p>
                   <p class="phone-num"> contact us {{ $businesses->phone_num }}</p>
-                  <p  style="float:right;" class="url"> <a href=" {{ $businesses->url }} ">View Website</a> </p>
-                  <p class="url">{{ $businesses->street }} {{ $businesses->city }} NC </a> </p>
+                  <p class="url"> <a href=" {{ $businesses->url }}" target="_blank">View Website</a> </p>
+                  <p class="address">{{ $businesses->street }} {{ $businesses->city }} NC </a> </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                      <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="/business/{{ $businesses->id }}"> View</button></a>
-
                       <!-- If business owner is logged in they will see these options -->
                       @if(Auth::check() && Auth::user()->role_id == 1)
                       <button type="button"  class="btn btn-sm btn-outline-secondary"> <a href="/businesses/{{ $businesses->id }}/edit"> Edit</button> </a>
                       @endif
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <!-- <small class="text-muted">9 mins</small> -->
                   </div>
                 </div>
               </div>

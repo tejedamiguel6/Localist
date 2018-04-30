@@ -17,8 +17,6 @@
           <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <i class="fa fa-user" aria-hidden="true"></i>Admin</a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{ route('businesses.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> All Businesses</a></li>
-            <li><a href="{{ route('users.index') }}"><i class="fa fa-user" aria-hidden="true"></i> All Users</a></li>
-            <li><a href="{{ route('roles.index') }}"><i class="fa fa-envelope" aria-hidden="true"></i> All Roles</a></li>
           </ul>
           </li>
         @endif

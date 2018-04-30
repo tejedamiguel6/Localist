@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Special;
 use Illuminate\Http\Request;
 
+
 //custom import for Auth
 use Illuminate\Support\Facades\Auth;
 
@@ -48,13 +49,27 @@ class SpecialsController extends Controller
         // if(!$business_id) {
         //     $businesses = Business::where('user_id', Auth::user()->id)->get();
         // }
-        //defined special_id variable here?
         return view('specials.create')
             ->with(compact('businesses'))
             ->with(compact('businessesArray'))
             ->with(compact('selected'));
     }
 
+
+
+
+protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'monday' => 'required|string|max:255',
+            'tuesday' => 'required|string|max:255',
+            'wednesday' => 'required|string|max:255',
+            'friday' => 'required|string|email|max:255|unique:users',
+            'saturday' => 'required|string|max:255',
+            'sunday' => 'required|string|max:255',
+            'saturday' => 'required|string|max:255',
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *

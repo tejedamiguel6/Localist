@@ -107,6 +107,4 @@ greetMe();
 // 	}
 // }
 
-
-
 }); // end document ready
